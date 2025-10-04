@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{{ name }} - Resume</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background: #f8fafc;
+      line-height: 1.3;
+      font-size: 11px;
+      padding: 0;
+      width: 100%;
+      overflow-x: auto;
+    }
+    
+    .resume-container {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    
+    .resume-page {
+      background: #ffffff;
+      color: #2d3748;
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0;
+      padding: 45px 65px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      border-radius: 2px;
+      position: relative;
+      flex-shrink: 0;
+    }
+    
+    /* Header */
+    .header {
+      text-align: center;
+      margin-bottom: 25px;
+      border-bottom: 3px solid #2563eb;
+      padding-bottom: 12px;
+    }
+    
+    .name {
+      font-size: 22px;
+      font-weight: 700;
+      margin: 0 0 8px 0;
+      color: #1e3a8a;
+      letter-spacing: 0.5px;
+    }
+    
+    .contact {
+      font-size: 11px;
+      color: #4a5568;
+      margin: 0;
+      line-height: 1.4;
+      font-weight: 500;
+    }
+    
+    /* Section headers */
+    .section-header {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin: 22px 0 12px 0;
+      color: #1e3a8a;
+      text-align: left;
+      border-bottom: 2px solid #2563eb;
+      padding-bottom: 3px;
+      letter-spacing: 0.8px;
+    }
+    
+    /* Professional Summary */
+    .summary-text {
+      margin: 0;
+      text-align: left;
+      line-height: 1.5;
+      font-size: 11px;
+      color: #374151;
+      font-weight: 400;
+    }
+    
+    /* Experience styling */
+    .experience-item {
+      margin: 15px 0;
+    }
+    
+    .job-title {
+      font-weight: bold;
+      font-size: 11px;
+      margin: 0;
+      text-align: left;
+      color: #2c3e50;
+    }
+    
+    .job-company-location {
+      font-size: 11px;
+      margin: 2px 0;
+      text-align: left;
+      color: #2c3e50;
+    }
+    
+    .job-duration {
+      font-size: 11px;
+      margin: 0;
+      text-align: right;
+      float: right;
+      margin-top: -32px;
+      color: #2c3e50;
+    }
+    
+    .job-details {
+      margin: 8px 0 0 0;
+      padding-left: 15px;
+      clear: both;
+    }
+    
+    .job-details li {
+      margin-bottom: 6px;
+      line-height: 1.3;
+      list-style-type: disc;
+      font-size: 11px;
+      text-align: left;
+      color: #2c3e50;
+    }
+    
+    /* Education styling */
+    .education-item {
+      margin: 15px 0;
+    }
+    
+    .education-degree {
+      font-weight: bold;
+      font-size: 11px;
+      margin: 0;
+      text-align: left;
+      color: #2c3e50;
+    }
+    
+    .education-school {
+      font-size: 11px;
+      margin: 2px 0 0 0;
+      text-align: left;
+      color: #2c3e50;
+    }
+    
+    .education-duration {
+      font-size: 11px;
+      margin: 0;
+      text-align: right;
+      float: right;
+      margin-top: -32px;
+      color: #2c3e50;
+    }
+    
+    /* Skills styling */
+    .skills-content {
+      margin: 8px 0 0 0;
+      line-height: 1.4;
+      font-size: 11px;
+      text-align: left;
+      color: #2c3e50;
+    }
+    
+    .skill-category {
+      margin-bottom: 8px;
+    }
+    
+    .skill-category-name {
+      font-weight: bold;
+      display: inline;
+      color: #2c3e50;
+    }
+    
+    .skill-list {
+      display: inline;
+      font-weight: normal;
+      color: #2c3e50;
+    }
+    
+    /* Consultancy and Projects */
+    .consultancy-item,
+    .project-item {
+      margin: 15px 0;
+    }
+    
+    .project-title {
+      font-weight: bold;
+      font-size: 11px;
+      margin: 0;
+      color: #2c3e50;
+    }
+    
+    .project-tech-duration {
+      font-size: 11px;
+      margin: 2px 0;
+      color: #2c3e50;
+    }
+    
+    .project-duration {
+      font-size: 11px;
+      float: right;
+      margin-top: -32px;
+      color: #2c3e50;
+    }
+    
+    /* Clear floats */
+    .clear {
+      clear: both;
+    }
+    
+    /* Print and PDF styles */
+    @media print {
+      body {
+        background: #fff;
+      }
+      .resume-container {
+        padding: 0;
+      }
+      .resume-page {
+        box-shadow: none;
+        margin: 0;
+        width: 100%;
+        padding: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="resume-container">
+    <div class="resume-page">
+    <div class="header">
+      <div class="name">{{ name }}</div>
+      <div class="contact">
+        {{ location }} • {{ email }} • {{ phone }} • {{ linkedin }}{% if github %} • {{ github }}{% endif %}
+      </div>
+    </div>
+
+    {% if summary %}
+    <div class="section-header">Professional Summary</div>
+    <div class="summary-text">{{ summary }}</div>
+    {% endif %}
+
+    {% if experiences %}
+    <div class="section-header">Professional Experience</div>
+    {% for exp in experiences %}
+      <div class="experience-item">
+        <div class="job-title">{{ exp.role }}</div>
+        <div class="job-company-location">{{ exp.company }}{% if exp.location %} • {{ exp.location }}{% endif %}</div>
+        <div class="job-duration">{{ exp.duration }}</div>
+        <ul class="job-details">
+          {% for detail in exp.details %}
+          <li>{{ detail }}</li>
+          {% endfor %}
+        </ul>
+        <div class="clear"></div>
+      </div>
+    {% endfor %}
+    {% endif %}
+
+    {% if projects %}
+    <div class="section-header">Projects</div>
+    {% for proj in projects %}
+      <div class="project-item">
+        <div class="project-title">{{ proj.name }}</div>
+        <div class="project-tech-duration">{{ proj.technologies }}</div>
+        <div class="project-duration">{{ proj.duration }}</div>
+        <ul class="job-details">
+          {% for detail in proj.details %}
+          <li>{{ detail }}</li>
+          {% endfor %}
+        </ul>
+        <div class="clear"></div>
+      </div>
+    {% endfor %}
+    {% endif %}
+
+    {% if consultancy %}
+    <div class="section-header">Consultancy</div>
+    {% for con in consultancy %}
+      <div class="consultancy-item">
+        <div class="job-title">{{ con.role }}</div>
+        <div class="job-company-location">{{ con.company }}</div>
+        <div class="job-duration">{{ con.duration }}</div>
+        <ul class="job-details">
+          {% for detail in con.details %}
+          <li>{{ detail }}</li>
+          {% endfor %}
+        </ul>
+        <div class="clear"></div>
+      </div>
+    {% endfor %}
+    {% endif %}
+
+    {% if education %}
+    <div class="section-header">Education</div>
+    {% for edu in education %}
+      <div class="education-item">
+        <div class="education-degree">{{ edu.degree }}</div>
+        <div class="education-school">{{ edu.school }}{% if edu.details %} • {{ edu.details }}{% endif %}</div>
+        <div class="education-duration">{{ edu.year }}</div>
+        <div class="clear"></div>
+      </div>
+    {% endfor %}
+    {% endif %}
+
+    {% if skills %}
+    <div class="section-header">Expert-Level Skills</div>
+    <div class="skills-content">
+      {% set skill_lines = skills.split('\n') %}
+      {% for line in skill_lines %}
+        {% if line.strip() %}
+          {% if ':' in line %}
+            {% set parts = line.split(':', 1) %}
+            <div class="skill-category">
+              <span class="skill-category-name">{{ parts[0].strip() }}:</span>
+              <span class="skill-list">{{ parts[1].strip() }}</span>
+            </div>
+          {% else %}
+            <div class="skill-category">{{ line.strip() }}</div>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    </div>
+    {% endif %}
+    </div>
+  </div>
+</body>
+</html>
